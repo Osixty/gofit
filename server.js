@@ -1,20 +1,22 @@
-const express = require('express')
-const app = express()
-const port = 3000
-const userrouter = require('./router/users') 
-const connectDB = require('./config/db')
+const express = require('express');
+const cors = require('cors');
+const app = express();
+const port = 5000;
+const quizRoute = require('./router/quiz')
+const jobsheetRoute = require('./router/jobsheet')
 
-app.use(express.json()) // for parsing application/json
-app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const db = require('./models')
+db.sequelize.sync()
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+    res.send('Quiz ExpressJS API by zidanudahgede');
+});
 
-app.use(userrouter)
+app.use('/api/quizzes', quizRoute)
+app.use('/api/jobsheet', jobsheetRoute)
 
-connectDB()
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+app.listen(port, () => console.log(`App listening on port http://localhost:${port}!`))
