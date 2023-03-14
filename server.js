@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express();
 const port = 5000;
 const quizRoute = require('./router/quiz')
-const jobsheetRoute = require('./router/jobsheet')
+// const jobsheetRoute = require('./router/jobsheet')
 
 app.use(cors());
 app.use(express.json());
@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
     res.send('Quiz ExpressJS API by zidanudahgede');
 });
 
-app.use('/api/quizzes', quizRoute)
-app.use('/api/jobsheet', jobsheetRoute)
+app.use('/api/quiz', quizRoute)
+// app.use('/api/jobsheet', jobshreetRoute)
 
 app.listen(port, () => console.log(`App listening on port http://localhost:${port}!`))
