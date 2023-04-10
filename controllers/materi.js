@@ -20,10 +20,10 @@ exports.create = async (req, res) => {
 //READ: menampilkan atau mengambil semua data Materi sesuai model dari database
 exports.getAll = async (req, res) => {
     try {
-        const Materi = await Materi.findAll()
+        const materi = await Materi.findAll()
         res.json({
             message: "Materi retrieved successfully.",
-            data: Materi,
+            data: materi,
         });
     } catch (error) {
         res.status(500).json({
@@ -37,13 +37,13 @@ exports.getAll = async (req, res) => {
 exports.update = async (req, res) => {
     const id = req.params.id
     try {
-        const Materi = await Materi.findByPk(id, { rejectOnEmpty: true })
-        Materi.update(req.body, {
+        const materi = await Materi.findByPk(id, { rejectOnEmpty: true })
+        materi.update(req.body, {
             where: { id }
         })
         res.json({
             message: "Materi updated successfully.",
-            data: Materi,
+            data: materi,
         });
     } catch (error) {
         res.status(500).json({
@@ -57,9 +57,9 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
     const id = req.params.id
     try {
-        const Materi = await Materi.findByPk(id, { rejectOnEmpty: true })
+        const materi = await Materi.findByPk(id, { rejectOnEmpty: true })
 
-        Materi.destroy()
+        materi.destroy()
 
         res.json({
             message: "Materi deleted successfully."
@@ -76,10 +76,10 @@ exports.delete = async (req, res) => {
 exports.findOne = async (req, res) => {
     const id = req.params.id
     try {
-        const Materi = await Materi.findByPk(id, { rejectOnEmpty: true })
+        const materi = await Materi.findByPk(id, { rejectOnEmpty: true })
         res.json({
             message: `Materi retrieved successfully with id=${id}.`,
-            data: Materi,
+            data: materi,
         });
     } catch (error) {
         res.status(500).json({
@@ -92,13 +92,13 @@ exports.findOne = async (req, res) => {
 // Menampilkan atau mengambil semua data Materi berdasarkan level tertentu
 exports.getKategori = async (req, res) => {
     const id = req.params.id
-    const Materi = await Materi.findAll({
+    const materi = await Materi.findAll({
         where: {
             kategori: id
         }
     })
     res.json({
         message: `Materi retrieved successfully with levelId=${id}.`,
-        data: Materi,
+        data: materi,
     });
 }
