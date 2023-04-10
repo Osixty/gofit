@@ -12,6 +12,9 @@ module.exports = (sequelize, Sequelize) => {
         key: {
             type: Sequelize.STRING,
         }, 
+        kategori: {
+            type: Sequelize.STRING,
+        }, 
         levelId: {
             type: Sequelize.STRING,
         },
